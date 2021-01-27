@@ -1,1 +1,131 @@
-/* You can add global styles to this file, and also import other style files */
+.header {
+  background: #113c66;
+  height: 55px;
+  /* position: fixed; */
+  /* position: absolute; */
+  width: 100%;
+  z-index: 1000;
+  top: 0;
+}
+
+.site-title {
+  float: left;
+  color: #fff;
+  margin: 15px 0 0 15px;
+  font-size: 1.125em;
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.site-title a {
+  /* display: none; */
+  display: block;
+  position: relative;
+  top: -5px;
+  /* z-index: 1; */
+  z-index: 225;
+  background: url(/assets/images/HC-wordmark-reverse-png.png) no-repeat;
+  background-size: contain;
+  height: 40px;
+  width: 220px;
+}
+@media all and (min-width: 320px) {
+  .site-title a {
+    width: 175px;
+  }
+}
+@media all and (min-width: 400px) {
+  .site-title a {
+    height: 44px;
+    width: 268px;
+    top: -9px;
+  }
+}
+
+.footer {
+  padding: 0 25px 10px;
+  overflow: hidden;
+  z-index: 2;
+  position: relative;
+  background: #113c66;
+  width: 100%;
+  color: #fff;
+  font-size: 1em;
+  padding: 30px 0;
+}
+footer.footer {
+  margin-top: 0;
+}
+footer h2 {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: #fff;
+}
+.footer a {
+  color: #fff;
+  font-size: 1em;
+  font-weight: 400;
+}
+.footer .henn-logo {
+  width: 45px;
+  vertical-align: baseline;
+}
+
+.footer-row {
+  width: 950px;
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 20px 0;
+}
+.footer-row:after {
+  clear: both;
+}
+
+.footer-column {
+  display: inline-block;
+  width: 250px;
+  padding: 10px 20px;
+}
+.footer-standard-info {
+  padding-left: 20px;
+}
+
+@media screen and (min-width: 950px) {
+  .footer {
+    background: #113c66;
+    width: 100%;
+    color: #fff;
+    font-size: 1em;
+    padding: 30px 0 90px 0;
+  }
+
+  footer.footer {
+    margin-top: 60px;
+    border-top: 1px solid #fff;
+  }
+  footer .pull-sm-right {
+    float: right;
+  }
+  footer .pull-sm-left {
+    float: left;
+  }
+  .footer .henn-logo {
+    float: right;
+  }
+  .footer-standard-info p {
+    display: inline-block;
+    width: 360px;
+    position: relative;
+    top: 40px;
+  }
+  .footer-row:first-of-type {
+    border-bottom: 1px solid #fff;
+    display: table;
+  }
+  .footer-column {
+    display: table-cell;
+  }
+}
