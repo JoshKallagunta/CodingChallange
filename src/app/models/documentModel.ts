@@ -11,4 +11,5 @@ export class Document{
     submitterOID: string;
     submittedDate: Date;
     processedDate: Date;
+    participantName: string;
 }

@@ -20,14 +20,13 @@ export class ApiService {
 
 	public getOID(): Observable<any>{  
     return this.http.get(this.API_URL_USER);
-    
   }  
   
-  public getUserDocument(oid : string) : Observable<any>{  
+  public getUserDocument(oid : string) : Observable<any> {  
 		return this.http.get(this.API_URL_USER_DOC + oid);  
   }  
   
-  public getUserParticipant(participant : string) : Observable<any>{  
-		return this.http.get(this.API_URL_USER_PARTICIPANT + participant);  
+  public getUserParticipant(participantId : number) : Observable<any>{  
+		return this.http.get(this.API_URL_USER_PARTICIPANT + participantId);  
 	}  
 }

@@ -1,0 +1,63 @@
+/* Base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: darkslategrey;
+  margin: 2rem 0;
+}
+
+/* Headers */
+h1,
+h5,
+p {
+  text-align: center;
+}
+
+h1 {
+  color: khaki;
+  margin-top: 1em;
+  letter-spacing: 1.4px;
+  line-height: 1.2;
+}
+
+h5 {
+  color: linen;
+}
+
+p {
+  color: #ffff;
+}
+
+/* Wrapper */
+.wrapper {
+  width: 90%;
+  max-width: 900px;
+  margin: 3em auto;
+  text-align: center;
+}
+
+/* Badge */
+.badge {
+  margin: 1.5em 3em;
+  width: 6.4em;
+  height: 6.4em;
+  display: inline-block;
+  top: 0;
+}
+
+.rounded {
+  width: 70px;
+  height: 70px;
+  background: white;
+  position: absolute;
+  margin: 15px 16px auto;
+  z-index: 10;
+  border-radius: 30%;
+}
+
+.steel {
+  background: #0058a4;
+  color: gold;
+}

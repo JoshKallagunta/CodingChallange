@@ -1,16 +1,25 @@
+<div class="page-wrapper">
+    <h3>My document history</h3>
 
-<h3>My document history</h3>
+    <ul>
 
-<table class="table">
+        <li *ngFor="let item of userDocument">
+            <h3>
+                <article class="badge steel"> 
+                    <p> hi </p>
+                    <p> {{item.submittedDate}} </p>
+                </article>
+                
+                You have successfully submitted your {{item.documentType}} for {{item.caseNumber}} 
+            </h3>
+            <!-- <p>Sub date: {{item.submittedDate}}<p>    
+            <p> NAME: {{item?.participantName}} <p> -->
 
-    <tbody>
-      <tr>
-        <th scope="row">IconHere</th>
-        <td>Thank you for ordering this thing {{userHistory}} this is a nice one!</td>
-      </tr>
-    </tbody>
-    
-</table>
+        </li>
+    </ul>
+</div>
+
+
 
 
 
