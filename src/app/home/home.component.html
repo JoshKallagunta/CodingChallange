@@ -6,11 +6,12 @@
         <li *ngFor="let item of userDocument">
             <h3>
                 <article class="badge steel"> 
-                    <p> hi </p>
-                    <p> {{item.submittedDate}} </p>
+                    <p> {{item.submittedDate | date:'d'}} </p> 
+                    <br>
+                    <p> {{item.submittedDate | date:'LLL' | uppercase}} </p>
                 </article>
                 
-                You have successfully submitted your {{item.documentType}} for {{item.caseNumber}} 
+                You have successfully submitted your {{item.documentName}} for {{item.participantName}} 
             </h3>
             <!-- <p>Sub date: {{item.submittedDate}}<p>    
             <p> NAME: {{item?.participantName}} <p> -->

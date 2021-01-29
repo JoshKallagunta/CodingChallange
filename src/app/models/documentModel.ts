@@ -12,4 +12,5 @@ export class Document{
     submittedDate: Date;
     processedDate: Date;
     participantName: string;
+    documentName: string;
 }

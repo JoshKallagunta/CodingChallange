@@ -13,10 +13,14 @@ import { ApiService } from '../api.service';
 export class HomeComponent implements OnInit {
   userHistory:User;
   userDocument:Document[];
+  userDocumentList:Document;
+
   //docList:Document[];
   userParticipant:Participant;
   oid:string;
   participantName : string;
+  userDocumentName:Document[];
+
   
   constructor(private apiService: ApiService) { }
   
@@ -24,7 +28,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.userDocument = [];
 
-    this.getUserOID();
+    //this.getUserOID();
+    this.getUserData();
 
   }
   
@@ -33,49 +38,139 @@ export class HomeComponent implements OnInit {
         this.userHistory = data;  
         this.oid=this.userHistory.oid;
 
-        this.getDocumentByUser(this.oid); 
+        //this.getDocumentByUser(this.oid); 
   
     })
   }
 
-  getDocumentByUser(oid:string){
-    this.apiService.getUserDocument(this.oid).subscribe((docs: Document[])=>{  
+  getUserData(){
 
-      let userDoc : Document;
+    let userDoc : Document;
 
-      if (docs !== undefined) {
-        for (const doc of docs) {
-          userDoc = new Document();
+
+      this.apiService.getOID().subscribe((user) => {
+        this.apiService.getUserDocument(user.oid).subscribe((Docs: Document[]) => {
+          for(const doc of Docs){
+            userDoc = new Document();
+
+            userDoc.caseNumber = doc.caseNumber;
+            userDoc.submittedDate = doc.submittedDate;
+            userDoc.receiptCode = doc.receiptCode;
+            userDoc.caseParticipant = doc.caseParticipant;
+            userDoc.documentType = doc.documentType;
+            userDoc.documentSubType = doc.documentSubType;
+            //userDoc.documentName = "test document";
+
+            //
+            if (doc.documentType === 1) {
+              if (doc.documentSubType === 1) {
+                userDoc.documentName = "Income Employer Verfication ";
+              }
+              if (doc.documentSubType === 3) {
+                userDoc.documentName = "Income Award Letter from Social Security Administration ";
+              }
+            }
+            if (doc.documentType === 2) {
+              userDoc.documentName = "Identity document ";
+            }
+            if (doc.documentType === 3) {
+              userDoc.documentName = "Shelter document ";
+            }
+            if (doc.documentType === 4) {
+              userDoc.documentName = "Combined Six Month report ";
+            }
+
+
+            if (doc.caseParticipant !== null ) {
+              this.apiService.getUserParticipant(doc.caseParticipant).subscribe((name : Participant) => {
+              userDoc.participantName = name.firstName;
+            });
+            } else {
+              userDoc.participantName = " ";
+            }
+
+
+
+            this.userDocument.push(userDoc);
+          }
+        
+        });
+  });
+
+    
+
+  }
+
+  // getDocumentByUser(oid:string){
+  //   this.apiService.getUserDocument(this.oid).subscribe((docs: Document[])=>{  
+
+  //     let userDoc : Document;
+
+  //     if (docs !== undefined) {
+  //       for (const doc of docs) {
+  //         userDoc = new Document();
   
-          userDoc.caseNumber = doc.caseNumber;
-          userDoc.submittedDate = doc.submittedDate;
-          userDoc.receiptCode = doc.receiptCode;
-          userDoc.caseParticipant = doc.caseParticipant;
-          userDoc.documentType = doc.documentType;
-          userDoc.documentSubType = doc.documentSubType;
+  //         userDoc.caseNumber = doc.caseNumber;
+  //         userDoc.submittedDate = doc.submittedDate;
+  //         userDoc.receiptCode = doc.receiptCode;
+  //         userDoc.caseParticipant = doc.caseParticipant;
+  //         userDoc.documentType = doc.documentType;
+  //         userDoc.documentSubType = doc.documentSubType;
 
-          if (doc.caseParticipant !== null) {
+  //         //
+  //         if (doc.documentType === 1) {
+  //           if (doc.documentSubType === 1) {
+  //             userDoc.documentName = "Income Employer Verfication ";
+  //           }
+  //           if (doc.documentSubType === 3) {
+  //             userDoc.documentName = "Income Award Letter from Social Security Administration ";
+  //           }
+  //         }
+  //         if (doc.documentType === 2) {
+  //           userDoc.documentName = "Identity document ";
+  //         }
+  //         if (doc.documentType === 3) {
+  //           userDoc.documentName = "Shelter document ";
+  //         }
+  //         if (doc.documentType === 4) {
+  //           userDoc.documentName = "Combined Six Month report ";
+  //         }
 
-            //let name = this.getParticipantById(doc.caseParticipant);
 
-            this.getParticipantById(doc.caseParticipant);
+  //         //
+  //         if (doc.caseParticipant !== null) {
 
-            userDoc.participantName = this.participantName;
+  //           //let name = this.getParticipantById(doc.caseParticipant);
 
-            //console.log("1" + this.participantName);
+  //           //this.getParticipantById(doc.caseParticipant);
+
+
+  //            this.apiService.getUserParticipant(doc.caseParticipant).subscribe((name : Participant) => {
+  //             userDoc.participantName = name.firstName + " " + name.lastName;
+              
+
+  //             console.log("before " + name.firstName); 
+
+
+  //           });
+
+
+  //           //userDoc.participantName = this.participantName;
+
+  //           //console.log("1" + this.participantName);
 
         
-          } else {
-            userDoc.participantName = "hh ";
-          }
-          this.userDocument.push(userDoc);
-          //console.log(this.userDocument);
+  //         } else {
+  //           userDoc.participantName = " ";
+  //         }
+  //         this.userDocument.push(userDoc);
+  //         //console.log(this.userDocument);
   
-        }
-      }
-    })
+  //       }
+  //     }
+  //   })
 
-  }
+  // }
 
  
   getParticipantById(caseParticipant:number) {
@@ -93,5 +188,7 @@ export class HomeComponent implements OnInit {
 
 
   }
+
+
 
 }
