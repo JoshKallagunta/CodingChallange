@@ -1,5 +1,4 @@
-import { Participant } from './models/participantModel';
-import { User } from './models/userModel';
+import { environment } from './../environments/environment';
 import { Injectable } from '@angular/core';  
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -10,23 +9,18 @@ import { Observable } from 'rxjs';
 })  
 export class ApiService {
 
-  private API_URL_USER = "https://sdtcodingchallenge.azurewebsites.net/api/GetUser";
-  private API_URL_USER_DOC = "https://sdtcodingchallenge.azurewebsites.net/api/GetSubmittedDocumentByUser?id=";
-  private API_URL_USER_PARTICIPANT = "https://sdtcodingchallenge.azurewebsites.net/api/GetParticipantById?id=";
-
-
   constructor(private http: HttpClient) { }
   
 
 	public getOID(): Observable<any>{  
-    return this.http.get(this.API_URL_USER);
+    return this.http.get(environment.API_URL_USER);
   }  
   
   public getUserDocument(oid : string) : Observable<any> {  
-		return this.http.get(this.API_URL_USER_DOC + oid);  
+		return this.http.get(environment.API_URL_USER_DOC + oid);  
   }  
   
   public getUserParticipant(participantId : number) : Observable<any>{  
-		return this.http.get(this.API_URL_USER_PARTICIPANT + participantId);  
+		return this.http.get(environment.API_URL_USER_PARTICIPANT + participantId);  
 	}  
 }

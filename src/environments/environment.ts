@@ -3,7 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  API_URL_USER : "https://sdtcodingchallenge.azurewebsites.net/api/GetUser",
+  API_URL_USER_DOC : "https://sdtcodingchallenge.azurewebsites.net/api/GetSubmittedDocumentByUser?id=",
+  API_URL_USER_PARTICIPANT : "https://sdtcodingchallenge.azurewebsites.net/api/GetParticipantById?id="
+
 };
 
 /*

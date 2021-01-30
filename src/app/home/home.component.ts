@@ -14,12 +14,9 @@ export class HomeComponent implements OnInit {
   userHistory:User;
   userDocument:Document[];
   userDocumentList:Document;
-
-  //docList:Document[];
   userParticipant:Participant;
   oid:string;
   participantName : string;
-  userDocumentName:Document[];
 
   
   constructor(private apiService: ApiService) { }
@@ -28,7 +25,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.userDocument = [];
 
-    //this.getUserOID();
     this.getUserData();
 
   }
@@ -36,10 +32,7 @@ export class HomeComponent implements OnInit {
     getUserOID(){
       this.apiService.getOID().subscribe((data: User)=>{  
         this.userHistory = data;  
-        this.oid=this.userHistory.oid;
-
-        //this.getDocumentByUser(this.oid); 
-  
+        this.oid=this.userHistory.oid;  
     })
   }
 
@@ -81,15 +74,14 @@ export class HomeComponent implements OnInit {
             }
 
 
+            //
             if (doc.caseParticipant !== null ) {
               this.apiService.getUserParticipant(doc.caseParticipant).subscribe((name : Participant) => {
-              userDoc.participantName = name.firstName;
+              userDoc.participantName = name.firstName + " " + name.lastName;
             });
             } else {
               userDoc.participantName = " ";
             }
-
-
 
             this.userDocument.push(userDoc);
           }
@@ -98,97 +90,6 @@ export class HomeComponent implements OnInit {
   });
 
     
-
   }
-
-  // getDocumentByUser(oid:string){
-  //   this.apiService.getUserDocument(this.oid).subscribe((docs: Document[])=>{  
-
-  //     let userDoc : Document;
-
-  //     if (docs !== undefined) {
-  //       for (const doc of docs) {
-  //         userDoc = new Document();
-  
-  //         userDoc.caseNumber = doc.caseNumber;
-  //         userDoc.submittedDate = doc.submittedDate;
-  //         userDoc.receiptCode = doc.receiptCode;
-  //         userDoc.caseParticipant = doc.caseParticipant;
-  //         userDoc.documentType = doc.documentType;
-  //         userDoc.documentSubType = doc.documentSubType;
-
-  //         //
-  //         if (doc.documentType === 1) {
-  //           if (doc.documentSubType === 1) {
-  //             userDoc.documentName = "Income Employer Verfication ";
-  //           }
-  //           if (doc.documentSubType === 3) {
-  //             userDoc.documentName = "Income Award Letter from Social Security Administration ";
-  //           }
-  //         }
-  //         if (doc.documentType === 2) {
-  //           userDoc.documentName = "Identity document ";
-  //         }
-  //         if (doc.documentType === 3) {
-  //           userDoc.documentName = "Shelter document ";
-  //         }
-  //         if (doc.documentType === 4) {
-  //           userDoc.documentName = "Combined Six Month report ";
-  //         }
-
-
-  //         //
-  //         if (doc.caseParticipant !== null) {
-
-  //           //let name = this.getParticipantById(doc.caseParticipant);
-
-  //           //this.getParticipantById(doc.caseParticipant);
-
-
-  //            this.apiService.getUserParticipant(doc.caseParticipant).subscribe((name : Participant) => {
-  //             userDoc.participantName = name.firstName + " " + name.lastName;
-              
-
-  //             console.log("before " + name.firstName); 
-
-
-  //           });
-
-
-  //           //userDoc.participantName = this.participantName;
-
-  //           //console.log("1" + this.participantName);
-
-        
-  //         } else {
-  //           userDoc.participantName = " ";
-  //         }
-  //         this.userDocument.push(userDoc);
-  //         //console.log(this.userDocument);
-  
-  //       }
-  //     }
-  //   })
-
-  // }
-
- 
-  getParticipantById(caseParticipant:number) {
-
-    this.apiService.getUserParticipant(caseParticipant).subscribe((participant: Participant)=>{  
-      this.userParticipant = participant;
-
-      //name = this.userParticipant.firstName + " " + this.userParticipant.lastName;
-      this.participantName = this.userParticipant.firstName + " " + this.userParticipant.lastName;
-
-      //console.log("2" + this.participantName);
-
-    });
-    //return this.participantName;
-
-
-  }
-
-
 
 }
