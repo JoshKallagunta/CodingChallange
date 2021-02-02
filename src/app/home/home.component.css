@@ -61,6 +61,7 @@ p {
 .steel {
   background: #0058a4;
   color: white;
+  border-radius: 5px;
 }
 
 ul {

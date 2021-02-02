@@ -77,10 +77,12 @@ export class HomeComponent implements OnInit {
             //
             if (doc.caseParticipant !== null ) {
               this.apiService.getUserParticipant(doc.caseParticipant).subscribe((name : Participant) => {
-              userDoc.participantName = name.firstName + " " + name.lastName;
+              userDoc.participantName = "for " + name.firstName + " " + name.lastName;
+
+              //console.log(userDoc.participantName);
             });
             } else {
-              userDoc.participantName = " ";
+              userDoc.participantName = "";
             }
 
             this.userDocument.push(userDoc);
