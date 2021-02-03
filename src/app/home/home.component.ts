@@ -3,6 +3,7 @@ import { Document } from './../models/documentModel';
 import { User } from './../models/userModel';
 import { Component, OnInit } from '@angular/core';  
 import { ApiService } from '../api.service';
+import { concatMap} from 'rxjs/operators'
 
 @Component({  
 	selector: 'app-home',  
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
   userParticipant:Participant;
   oid:string;
   participantName : string;
+  fullName : any[];
 
   
   constructor(private apiService: ApiService) { }
@@ -81,12 +83,20 @@ export class HomeComponent implements OnInit {
             //Subscribes to Participant name using the caseParticipant id,
             //If the caseParticipant is not null
             if (doc.caseParticipant !== null ) {
-              this.apiService.getUserParticipant(doc.caseParticipant).subscribe((name : Participant) => {
-                
-                userDoc.participantName = "for " + name.firstName + " " + name.lastName;
 
-              //console.log(userDoc.participantName);
-            });
+              this.apiService.getUserParticipant(doc.caseParticipant).pipe(
+                concatMap(result => this.apiService.getUserParticipant(doc.caseParticipant)),
+              ) .subscribe((respo : Participant) =>  {   
+
+                //this.fullName = respo; 
+
+                //console.log(JSON.stringify(this.fullName));
+                
+                userDoc.participantName = "for " + respo.firstName + " " + respo.lastName; 
+
+                console.log(userDoc.participantName);
+              });
+
             } else {
               //Leave empty if caseParticipant is null 
               userDoc.participantName = "";
@@ -98,7 +108,6 @@ export class HomeComponent implements OnInit {
         });
   });
 
-    
   }
 
 }
