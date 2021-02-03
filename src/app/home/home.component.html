@@ -1,20 +1,23 @@
-<div class="page-wrapper">
-  <h3>My document history</h3>
+<main id="main-content">
+  <div class="page-wrapper">
+    <!-- H2 before for symantic structure before H2 -->
+    <h3>My document history</h3>
 
-  <ul>
-    <li *ngFor="let item of userDocument | orderBy: 'submittedDate':true">
-      <div>
-        <article class="badge steel">
-          <p>{{ item.submittedDate | date: "d" }}</p>
-          <br />
-          <p>{{ item.submittedDate | date: "LLL" | uppercase }}</p>
-        </article>
+    <!--Accessibility-->
+    <ul id="docList" aria-label="Document history list"> 
+      <li *ngFor="let item of userDocument | orderBy: 'submittedDate':true" aria-labelledby="docList">
+        <div>
+          <div class="badge steel">
+            <p>{{ item.submittedDate | date: "d" }}</p>
+            <br />
+            <p>{{ item.submittedDate | date: "LLL" | uppercase }}</p>
+          </div>
 
-        You have successfully submitted your {{ item.documentName }}
-        {{ item.participantName }}. ID: {{ item.receiptCode }}
-      </div>
-      <!-- <p>Sub date: {{item.submittedDate}}<p>    
-            <p> NAME: {{item?.participantName}} <p> -->
-    </li>
-  </ul>
-</div>
+          You have successfully submitted your {{ item.documentName }}
+          {{ item.participantName }}. ID: {{ item.receiptCode }}
+        </div>
+
+      </li>
+    </ul> <!--end docList ul-->
+  </div>
+</main>

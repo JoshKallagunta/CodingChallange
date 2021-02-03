@@ -1,0 +1,88 @@
+/* Base footer styles */
+.footer {
+  padding: 0 25px 10px;
+  overflow: hidden;
+  z-index: 2;
+  position: relative;
+  background: #113c66;
+  width: 100%;
+  color: #fff;
+  font-size: 1em;
+  padding: 30px 0;
+}
+footer.footer {
+  margin-top: 0;
+}
+footer h2 {
+  font-size: 1.25em;
+  font-weight: 700;
+  color: #fff;
+}
+.footer a {
+  color: #fff;
+  font-size: 1em;
+  font-weight: 400;
+}
+.footer .henn-logo {
+  width: 45px;
+  vertical-align: baseline;
+}
+
+.footer-row {
+  width: 950px;
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 20px 0;
+}
+.footer-row:after {
+  clear: both;
+}
+
+.footer-column {
+  display: inline-block;
+  width: 250px;
+  padding: 10px 20px;
+}
+.footer-standard-info {
+  padding-left: 20px;
+}
+
+@media screen and (min-width: 950px) {
+  .footer {
+    background: #113c66;
+    width: 100%;
+    color: #fff;
+    font-size: 1em;
+    padding: 30px 0 90px 0;
+  }
+
+  footer.footer {
+    margin-top: 60px;
+    border-top: 1px solid #fff;
+  }
+  footer .pull-sm-right {
+    float: right;
+  }
+  footer .pull-sm-left {
+    float: left;
+  }
+  .footer .henn-logo {
+    float: right;
+  }
+  .footer-standard-info p {
+    display: inline-block;
+    width: 360px;
+    position: relative;
+    top: 40px;
+  }
+  .footer-row:first-of-type {
+    border-bottom: 1px solid #fff;
+    display: table;
+  }
+  .footer-column {
+    display: table-cell;
+  }
+}
+
+/* End Footer Style */

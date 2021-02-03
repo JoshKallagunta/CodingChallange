@@ -23,26 +23,31 @@ export class HomeComponent implements OnInit {
   
   
   ngOnInit() {
-    this.userDocument = [];
+    this.userDocument = []; // initilize 
 
     this.getUserData();
 
   }
   
+    //Subscribes to user's OID
     getUserOID(){
+      //Get user OID
       this.apiService.getOID().subscribe((data: User)=>{  
         this.userHistory = data;  
         this.oid=this.userHistory.oid;  
     })
   }
 
+  //
   getUserData(){
 
     let userDoc : Document;
 
-
+      //Calls getOID method and subscribes to user's data with that OID 
       this.apiService.getOID().subscribe((user) => {
         this.apiService.getUserDocument(user.oid).subscribe((Docs: Document[]) => {
+          
+          //Loop through each document and populate the properties in documentModel
           for(const doc of Docs){
             userDoc = new Document();
 
@@ -52,9 +57,8 @@ export class HomeComponent implements OnInit {
             userDoc.caseParticipant = doc.caseParticipant;
             userDoc.documentType = doc.documentType;
             userDoc.documentSubType = doc.documentSubType;
-            //userDoc.documentName = "test document";
 
-            //
+            //Uses documentType to pipe verbage based on the number type given 
             if (doc.documentType === 1) {
               if (doc.documentSubType === 1) {
                 userDoc.documentName = "Income Employer Verfication ";
@@ -74,17 +78,20 @@ export class HomeComponent implements OnInit {
             }
 
 
-            //
+            //Subscribes to Participant name using the caseParticipant id,
+            //If the caseParticipant is not null
             if (doc.caseParticipant !== null ) {
               this.apiService.getUserParticipant(doc.caseParticipant).subscribe((name : Participant) => {
-              userDoc.participantName = "for " + name.firstName + " " + name.lastName;
+                
+                userDoc.participantName = "for " + name.firstName + " " + name.lastName;
 
               //console.log(userDoc.participantName);
             });
             } else {
+              //Leave empty if caseParticipant is null 
               userDoc.participantName = "";
             }
-
+            //Pushes userDoc into userDocument array, used in HTML 
             this.userDocument.push(userDoc);
           }
         

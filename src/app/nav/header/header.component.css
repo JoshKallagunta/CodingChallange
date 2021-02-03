@@ -1,0 +1,49 @@
+/* Base Header Style */
+
+.header {
+  background: #113c66;
+  height: 55px;
+  /* position: fixed; */
+  /* position: absolute; */
+  width: 100%;
+  z-index: 1000;
+  top: 0;
+}
+
+.site-title {
+  float: left;
+  color: #fff;
+  margin: 15px 0 0 15px;
+  font-size: 1.125em;
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.site-title a {
+  /* display: none; */
+  display: block;
+  position: relative;
+  top: -5px;
+  /* z-index: 1; */
+  z-index: 225;
+  background: url(/assets/images/HC-wordmark-reverse-png.png) no-repeat;
+  background-size: contain;
+  height: 40px;
+  width: 220px;
+}
+@media all and (min-width: 320px) {
+  .site-title a {
+    width: 175px;
+  }
+}
+@media all and (min-width: 400px) {
+  .site-title a {
+    height: 44px;
+    width: 268px;
+    top: -9px;
+  }
+}
+
+/* End Header Style */
