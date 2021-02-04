@@ -4,8 +4,8 @@
     <h3>My document history</h3>
 
     <!--Accessibility-->
-    <ul id="docList" aria-label="Document history list"> 
-      <li *ngFor="let item of userDocument | orderBy: 'submittedDate':true" aria-labelledby="docList">
+    <ul aria-labelledby="docList" aria-label="Document history list"> 
+      <li id="docList" *ngFor="let item of userDocument | orderBy: 'submittedDate':true">
         <div>
           <div class="badge steel">
             <p>{{ item.submittedDate | date: "d" }}</p>
