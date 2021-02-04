@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
             //If the caseParticipant is not null
             if (doc.caseParticipant !== null ) {
 
-              this.apiService.getUserParticipant(doc.caseParticipant).pipe(
+              this.apiService.getUserParticipantObs(doc.caseParticipant).pipe(
                 concatMap(result => this.apiService.getUserParticipant(doc.caseParticipant)),
               ) .subscribe((respo : Participant) =>  {   
 

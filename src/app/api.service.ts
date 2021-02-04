@@ -1,3 +1,4 @@
+import { Participant } from './models/participantModel';
 import { environment } from './../environments/environment';
 import { Injectable } from '@angular/core';  
 import { HttpClient } from '@angular/common/http';
@@ -22,5 +23,9 @@ export class ApiService {
   
   public getUserParticipant(participantId : number) : Observable<any>{  
 		return this.http.get(environment.API_URL_USER_PARTICIPANT + participantId);  
+  }  
+  
+  public getUserParticipantObs(participantId : number) : Observable<Participant[]>{  
+		return this.http.get<Participant[]>(environment.API_URL_USER_PARTICIPANT + participantId);  
 	}  
 }
