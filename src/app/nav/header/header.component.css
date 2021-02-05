@@ -47,3 +47,37 @@
 }
 
 /* End Header Style */
+
+/* Skip-nav style */
+a.skip-nav {
+  position: absolute;
+  left: -10000px;
+  top: -10000px;
+}
+
+a.skip-nav:focus {
+  position: absolute;
+  background-color: #fff;
+  padding: 5px;
+  left: 0;
+  top: 0;
+  z-index: 10000;
+}
+
+@media only screen and (max-width: 970px) {
+  a.skip-nav {
+    position: absolute;
+    left: -10000px;
+    top: -10000px;
+  }
+
+  a.skip-nav:focus {
+    position: absolute;
+    background-color: #fff;
+    padding: 5px;
+    left: 0;
+    top: 0;
+    z-index: 10000;
+  }
+}
+/* End skip-nav style */
